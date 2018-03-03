@@ -1,1 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Disney Trivia Game</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<h1>Disney Trivia Game!</h1>
 
+<div class="container">
+<h2 id="Q"></h2>
+<h5 id="Timer"></h5>
+
+<div id="buttons">
+<div class="btn-group-toggle" id="Answer1" data-toggle="buttons">
+  <label class="btn btn-secondary active">
+    <input type="checkbox" checked autocomplete="off"> Answer 1
+  </label>
+</div>
+<br>
+<div class="btn-group-toggle" id="Answer2" data-toggle="buttons">
+  <label class="btn btn-secondary active">
+    <input type="checkbox" checked autocomplete="off"> Answer 2
+  </label>
+</div>
+<br>
+<div class="btn-group-toggle" id="Answer3" data-toggle="buttons">
+  <label class="btn btn-secondary active">
+    <input type="checkbox" checked autocomplete="off"> Answer 3
+  </label>
+</div>
+<br>
+<div class="btn-group-toggle" id="Answer4" data-toggle="buttons">
+  <label class="btn btn-secondary active">
+    <input type="checkbox" checked autocomplete="off"> Answer 4
+  </label>
+</div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+
+//Timer 
+var Timer = 21;
+
+var intervalId;
+
+function run() {
+      clearInterval(intervalId);
+      intervalId = setInterval(decrement, 1000);
+    }
+
+    function decrement() {
+
+      Timer--;
+
+      $("#Timer").html("<h5>" +"Time Remaining: "+ Timer + "</h5>");
+
+      if ( Timer === 0) {
+
+        stop();
+
+        alert("Time's Up!");
+      }
+    }
+
+    function stop() {
+
+
+      clearInterval(intervalId);
+    }
+
+    run();
+
+//Game set up
+var Trivia = [
+    {
+        Question: "Which one is Not a Seven Dwarf?",
+        UserChoice: {
+            A:"Bashful",
+            B:"Sleepy",
+            C:"Grouchy",
+            D:"Sneezey"
+        },
+        Answer: "Grouchy"
+    },
+    {
+        Question: "In Sleeping Beauty, what is the name of Maleficent's pet raven?",
+        UserChoice:{
+            A:"Fool",
+            B:"Satan",
+            C:"Damingo",
+            D:"Diablo"
+        },
+        Answer: "Diablo"
+    },
+    {
+        Question: "What does Peter give Wendy when she asks for a kiss?",
+        UserChoice:{
+            A:"An Acorn",
+            B:"A Hershey's Kiss",
+            C:"A Thimble",
+            D:"His Shadow"
+        },
+        Answer: "An Acorn"
+    },
+    {
+        Question: "In 101 Dalmations, how many puppies does Pongo have?",
+        UserChoice:{
+            A:"20",
+            B:"15",
+            C:"91",
+            D:"101"
+        },
+        Answer: "15"
+    },
+    {
+        Question: "Who killed Mufasa?",
+        UserChoice:{
+            A:"Simba",
+            B:"Scar",
+            C:"Hayenas",
+            D:"Rafiki"
+        },
+        Answer:"Scar"
+    }
+];
+
+
+var Correct = 0;
+var Incorrect = 0;
+
+var i = 0;
+
+
+// $("#buttons")on.("click");
+// $("#buttons")addClass.("btn btn-secondary active");
+
+function DisplayNextQuestion () {
+
+for (var i = 0; i < Trivia.length; i++) {
+
+$("#Q").html("<h2>" + Trivia[i].Question + "</h2>");
+
+$("#Answer1").html("<div>" + Trivia[i].UserChoice.A + "</div>");
+$("#Answer2").html("<div>" + Trivia[i].UserChoice.B + "</div>");
+$("#Answer3").html("<div>" + Trivia[i].UserChoice.C + "</div>");
+$("#Answer4").html("<div>" + Trivia[i].UserChoice.D + "</div>");
+
+
+	if (Trivia[i].UserChoice === Trivia[i].Answer) {
+		Correct++
+	} else 
+	Incorrect++
+
+	//if TimeUp incorrect++
+};
+}
+
+DisplayNextQuestion ()
+
+console.log(Correct);
+console.log(Incorrect);
+
+	//run for loop when button is clicked or when time runs out for each question 
+	//if correct answer, display "Correct!" and then continue loop
+	//if incorrect answer, display "Incoorect!" and then continue loop
+	//at the end of the loop, display total incorrect and correct answers 
+	
+
+
+
+
+</script>
+
+</body>
+</html>
